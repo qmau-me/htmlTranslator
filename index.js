@@ -10,7 +10,7 @@ app.use(bodyParser.text({ type: "text/html" }));
 app.post("/", (req, res) => {
 	translate(req.body, { to: "vi" })
         .then(str => {
-            ret = str.text.replace(new RegExp("</ ", 'g'), "</");
+            ret = str.text.replace(new RegExp("</ ", 'g'), "</").replace(new RegExp("< ", "g"), "<");
             console.log("translating...");
             res.charset = 'utf-8';
 			res.send(ret);
